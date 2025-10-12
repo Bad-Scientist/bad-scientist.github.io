@@ -230,16 +230,24 @@
     </figure>
     <br>
     <p class="has-text-left">
-      Our main evaluation result is in Table 1. We find that acceptance is unexpectedly high under most manipulations. Single strategies already yield substantial ACPT (e.g., S1:
-      67.0%/82.0%; S3: 53.5%/69.7%), indicating that current review agents are easily persuaded and
-      lack sufficient awareness to spot integrity/fabrication issues. The All strategy as a multi–setup,
-      attains high acceptance (52.0%/69.0%), but it also maximally increases detectability (ICR@M
-      51.7%, o3 50.6%), suggesting that composing strategies broadens the footprint seen by detectors.
-      Among single strategies, S1 provides the strongest acceptance with only moderate detection pres-
-      sure (ICR@M 39.5%), whereas others (e.g., S3–S5) are somewhat weaker but also less detectable
-      (ICR@M ≈ 30–34%). Across models, o3 is the most flag-happy (consistently higher ICR-m), while
-      GPT-4.1 rarely flags concerns (mostly 2–8%), reinforcing that current review models have limited
-      and uneven detection capability.
+      Our main evaluation result is in Table <strong>ACPT–ICR</strong>. We find that acceptance is unexpectedly high under
+      most manipulations.
+      Single strategies already yield substantial ACPT
+      (e.g., <span style="font-variant: small-caps;">ACPT</span><sub>τ<sub>rate</sub></sub>=67.0%,
+      <span style="font-variant: small-caps;">ACPT</span><sub>τ<sub>0.5</sub></sub>=82.0% for <i>s</i><sub>1</sub>),
+      indicating that current review agents are easily persuaded and lack sufficient awareness to spot integrity/fabrication
+      issues.
+      The <em>All</em> strategy as a composed setup attains high acceptance (52.0%/69.0%), but it also maximally increases
+      detectability
+      (ICR@M&nbsp;51.7%, <code>o3</code>&nbsp;50.6%), suggesting that composing strategies broadens the footprint seen by
+      detectors.
+      Among single strategies, <i>s</i><sub>1</sub> provides the strongest acceptance with only moderate detection pressure
+      (ICR@M&nbsp;39.5%),
+      whereas others (e.g., <i>s</i><sub>3</sub>–<i>s</i><sub>5</sub>) are somewhat weaker but also less detectable
+      (ICR@M&nbsp;≈&nbsp;30–34%).
+      Across models, <code>o3</code> is the most flag-happy (consistently higher ICR-m), while <code>GPT-4.1</code> rarely
+      flags concerns
+      (mostly 2–8%), reinforcing that current review models have limited and uneven detection capability.
     </p>
   </div>
   </section>
@@ -258,14 +266,18 @@
     </figure>
     <br>
     <p class="has-text-left">
-      This figure plots score histograms for three models across six setups (S1–S5,
-      ALL) with the acceptance threshold marked. Overall, o4-mini is right-shifted—consistently placing
-      more mass at ≥ 7—which aligns with its higher acceptance tendency. o3 shows larger variance and a
-      fatter right tail (notably in S1 and ALL), producing many near-threshold and high scores; GPT-4.1 is
-      comparatively conservative, clustering around 6–7 with a thinner tail at 8+. Among strategies, S1
-      yields the strongest rightward shift for all models, while S2/S4 are milder. The ALL composition
-      increases polarization (more mass both just below and above the threshold), explaining why it sustains
-      high acceptance yet is easier for detectors to flag.
+      This figure plots score histograms for three models across six setups (<i>s</i><sub>1</sub>–<i>s</i><sub>5</sub>, <em>All</em>) with
+      the acceptance threshold marked.
+      Overall, <code>o4-mini</code> is right-shifted—consistently placing more mass at ≥7—which aligns with its higher
+      acceptance tendency.
+      <code>o3</code> shows larger variance and a fatter right tail (notably in <i>s</i><sub>1</sub> and <em>All</em>),
+      producing many near-threshold and high scores;
+      <code>GPT-4.1</code> is comparatively conservative, clustering around 6–7 with a thinner tail at 8+.
+      Among strategies, <i>s</i><sub>1</sub> yields the strongest rightward shift for all models, while
+      <i>s</i><sub>2</sub>/<i>s</i><sub>4</sub> are milder.
+      The <span style="font-variant: small-caps;">All</span> setup increases polarization (more mass both just below and above
+      the threshold),
+      explaining why it sustains high acceptance yet is easier for detectors to flag.
     </p>
   </div>
   </section>
@@ -284,13 +296,17 @@
     </figure>
     <br>
     <p class="has-text-left">
-      Conditioned on a model posting an integrity concern, we report
-      the share that still receives an acceptance-level score in Table 2. Conflict is widespread: o4-mini is
-      most contradictory (S1/S3/All: 100%; S2/S4/S5: 50–80%), GPT-4.1 is mixed (0% in S4 but 33–75%
-      elsewhere), and o3 is moderate ( 26–52%). S3 (statistical theater) induces the largest cross-model
-      conflict, and ALL further amplifies it for o4-mini (100%). These observations indicate that even
-      agents voice concerns, yet keep acceptance-high scores, and integrity signals are not well-coupled to
-      assessment.
+      Conditioned on a model posting an integrity concern, we report the share that still receives an acceptance-level score
+      in Table <strong>Model Results</strong>.
+      Conflict is widespread: <code>o4-mini</code> is most contradictory
+      (<i>s</i><sub>1</sub>/<i>s</i><sub>3</sub>/<em>All</em>: 100%;
+      <i>s</i><sub>2</sub>/<i>s</i><sub>4</sub>/<i>s</i><sub>5</sub>: 50–80%),
+      <code>GPT-4.1</code> is mixed (0% in <i>s</i><sub>4</sub> but 33–75% elsewhere), and
+      <code>o3</code> is moderate (~26–52%).
+      <i>s</i><sub>3</sub> (statistical theater) induces the largest cross-model conflict, and
+      <em>All</em> further amplifies it for <code>o4-mini</code> (100%).
+      These observations indicate even agents voice concerns, yet keep acceptance-high scores, and integrity signals are not
+      well-coupled to review.
     </p>
     <br>
   </div>
