@@ -55,9 +55,9 @@
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="https://fqjiang.work/" target="_blank">Fengqing Jiang</a><sup>♢</sup>,</span>
+                <a href="https://fqjiang.work/" target="_blank">Fengqing Jiang</a><sup>♠</sup>,</span>
               <span class="author-block">
-                <a href="" target="_blank">Yichen Feng</a><sup>♢</sup>,</span>
+                <a href="" target="_blank">Yichen Feng</a><sup>♠</sup>,</span>
               <!-- <span class="author-block">
                 <a href="https://zhangchenxu.com/" target="_blank">Zhangchen Xu</a><sup>♠</sup>,</span> -->
               <!-- <span class="author-block">
@@ -70,12 +70,12 @@
               <span class="author-block">
                 <a href="https://yuchenlin.xyz/" target="_blank">Bill Yuchen Lin</a><sup>♠</sup>,</span> -->
               <span class="author-block">
-                <a href="https://people.ece.uw.edu/radha/" target="_blank">Radha Poovendran</a><sup>♢</sup>,</span>
+                <a href="https://people.ece.uw.edu/radha/" target="_blank">Radha Poovendran</a><sup>♠</sup>,</span>
               </span>
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>♢</sup>University of Washington
+              <span class="author-block"><sup>♠</sup>University of Washington
             </div>
 
             <div class="column has-text-centered">
@@ -248,17 +248,24 @@
   <div class="container is-max-desktop">
     <!-- Optional section title -->
     <div class="has-text-centered">
-      <h2 class="title is-3">✨ VisualSphinx is High-quality! ✨</h2>
+      <h2 class="title is-3">Score distributions</h2>
     </div>
     <br>
     <!-- Figure on top -->
 
     <figure class="image" style="width: 95%; margin: 0 auto;">
-      <img src="static/images/statistics.jpg" alt="" />
+      <img src="static/images/image1.png" alt="" />
     </figure>
     <br>
     <p class="has-text-left">
-      This figure shows the statistics of readability, logical coherence and pass rates of <b>VisualSphinx-V1</b>.
+      Figure 1 plots score histograms for three models across six setups (S1–S5,
+      ALL) with the acceptance threshold marked. Overall, o4-mini is right-shifted—consistently placing
+      more mass at ≥ 7—which aligns with its higher acceptance tendency. o3 shows larger variance and a
+      fatter right tail (notably in S1 and ALL), producing many near-threshold and high scores; GPT-4.1 is
+      comparatively conservative, clustering around 6–7 with a thinner tail at 8+. Among strategies, S1
+      yields the strongest rightward shift for all models, while S2/S4 are milder. The ALL composition
+      increases polarization (more mass both just below and above the threshold), explaining why it sustains
+      high acceptance yet is easier for detectors to flag.
     </p>
   </div>
   </section>
@@ -267,18 +274,62 @@
   <div class="container is-max-desktop">
     <!-- Optional section title -->
     <div class="has-text-centered">
-      <h2 class="title is-3">✨ Performance on Our Benchmarks ✨</h2>
+      <h2 class="title is-3">Concern–Acceptance Conflict</h2>
     </div>
     <br>
     <!-- Figure on top -->
 
     <figure class="image" style="width: 95%; margin: 0 auto;">
-      <img src="static/images/performance.png" alt="" />
+      <img src="static/images/table2.png" alt="" />
     </figure>
     <br>
     <p class="has-text-left">
-      This figure illustrates the performance of the model trained on <b>VisualSphinx-V1</b>, evaluated on the
-      <b>VisualSphinx-TEST</b> across varying difficulty levels, and compares it with other models.
+      Conditioned on a model posting an integrity concern, we report
+      the share that still receives an acceptance-level score in Table 2. Conflict is widespread: o4-mini is
+      most contradictory (S1/S3/All: 100%; S2/S4/S5: 50–80%), GPT-4.1 is mixed (0% in S4 but 33–75%
+      elsewhere), and o3 is moderate ( 26–52%). S3 (statistical theater) induces the largest cross-model
+      conflict, and ALL further amplifies it for o4-mini (100%). These observations indicate that even
+      agents voice concerns, yet keep acceptance-high scores, and integrity signals are not well-coupled to
+      assessment.
+    </p>
+    <br>
+  </div>
+  </section>
+
+  <section class="section"></section>
+  <div class="container is-max-desktop">
+    <!-- Optional section title -->
+    <div class="has-text-centered">
+      <h2 class="title is-3">Mitigation Strategies</h2>
+    </div>
+    <br>
+    <!-- Figure on top -->
+  
+    <figure class="image" style="width: 95%; margin: 0 auto;">
+      <img src="static/images/table3.png" alt="" />
+    </figure>
+    <figure class="image" style="width: 95%; margin: 0 auto;">
+      <img src="static/images/table4.png" alt="" />
+    </figure>
+    <br>
+    <p class="has-text-left">
+      <strong>(i) Review-with-Detection (ReD)</strong>
+      We modify the review prompt to bundle a conventional rubric-based review with
+      a mandatory detection of AI-generated content. For each document, a single model
+      <i>m</i> &isin; <i>M</i> outputs: (a) a standard review, (b) a binary label
+      <i>y</i><sub>m</sub> &isin; {<span style="font-variant: small-caps;">Non-Fabricated</span>,
+      <span style="font-variant: small-caps;">AI-Fabricated</span>}, and (c)
+      <em>evidence snippets</em> (quoted lines) to support its finding.
+    </p>
+    
+    <p class="has-text-left">
+      <strong>(ii) Detection-Only (DetOnly)</strong>
+      We remove the reviewing rubric and instruct the agent to perform <em>only</em> the
+      detection of AI-generated content. In this mode, the model's sole task is to return
+      a binary label <i>y</i><sub>m</sub> &isin; {<span style="font-variant: small-caps;">Non-Fabricated</span>,
+      <span style="font-variant: small-caps;">AI-Fabricated</span>} and evidence, which serves as the direct and final
+      triage action,
+      without any secondary assessment.
     </p>
     <br>
   </div>
@@ -430,16 +481,9 @@ End teaser video
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@misc{feng2025visualsphinx,
-      title={VisualSphinx: Large-Scale Synthetic Vision Logic Puzzles for RL},
-      author={Yichen Feng and Zhangchen Xu and Fengqing Jiang and Yuetai Li and Bhaskar Ramasubramanian and Luyao Niu and Bill
-      Yuchen Lin and Radha Poovendran},
-      year={2025},
-      eprint={2505.23977},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2505.23977}, 
-    }</code></pre>
+      <pre><code>
+
+      </code></pre>
     </div>
   </section>
   <!--End BibTex citation -->
