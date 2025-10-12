@@ -176,7 +176,18 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              abstract
+              The convergence of LLM-powered research assistants and AI-based peer review systems creates a critical vulnerability:
+              fully automated publication loops where AI-generated research is evaluated by AI reviewers without human oversight. We
+              investigate this through <b>BadScientist</b>, a framework that evaluates whether fabrication-oriented paper generation
+              agents can deceive multi-model LLM review systems. Our generator employs presentation-manipulation strategies requiring
+              no real experiments. We develop a rigorous evaluation framework with formal error guarantees (concentration bounds and
+              calibration analysis), calibrated on real data.
+              Our results reveal systematic vulnerabilities: fabricated papers achieve acceptance rates up to $82.0\%$. Critically, we
+              identify <i>concern-acceptance conflict</i>---reviewers frequently flag integrity issues yet assign acceptance-level
+              scores. Our mitigation strategies show only marginal improvements, with detection accuracy barely exceeding random
+              chance. Despite provably sound aggregation mathematics, integrity checking systematically fails, exposing fundamental
+              limitations in current AI-driven review systems and underscoring the urgent need for defense-in-depth safeguards in
+              scientific publishing.
             </p>
           </div>
         </div>
