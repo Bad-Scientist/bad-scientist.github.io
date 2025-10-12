@@ -220,31 +220,26 @@
   <div class="container is-max-desktop">
     <!-- Optional section title -->
     <div class="has-text-centered">
-      <h2 class="title is-3">✨ VisualSphinx Pipeline ✨</h2>
+      <h2 class="title is-3">✨ BadScientist Main Results ✨</h2>
     </div>
     <br>
     <!-- Figure on top -->
 
     <figure class="image" style="width: 95%; margin: 0 auto;">
-      <img src="static/images/pipeline-mini.jpg" alt="" />
+      <img src="static/images/table1.png" alt="" />
     </figure>
     <br>
     <p class="has-text-left">
-      This figure illustrates the <b>four-stage</b> pipeline for generating <b>VisualSphinx-V1</b>. In Step 1, we
-      collect 4K seed
-      puzzles with explanations and abstract them into structured rule descriptions using LLMs. In Step 2, we apply a
-      rule-level genetic algorithm to cross over, mutate and diversify the seed rules, scaling them to 40K high-quality
-      rules.
-      In Step 3, each rule is paired with a rendering style and used to generate five correct and three incorrect images
-      via
-      LLM-generated Python scripts. The fifth correct image is designated as the answer option, while the three
-      rule-breaking
-      images serve as distractors. After deduplication, we obtain 110K image groups. In Step 4, we assemble puzzles from
-      each
-      group using three complementary strategies: default assembly, shuffled answer variants, and expanded distractor
-      sets.
-      This results in over 660K visual logic puzzles, enabling robust and diverse training for multimodal reasoning
-      models.
+      Our main evaluation result is in Table 1. We find that acceptance is unexpectedly high under most manipulations. Single strategies already yield substantial ACPT (e.g., S1:
+      67.0%/82.0%; S3: 53.5%/69.7%), indicating that current review agents are easily persuaded and
+      lack sufficient awareness to spot integrity/fabrication issues. The All strategy as a multi–setup,
+      attains high acceptance (52.0%/69.0%), but it also maximally increases detectability (ICR@M
+      51.7%, o3 50.6%), suggesting that composing strategies broadens the footprint seen by detectors.
+      Among single strategies, S1 provides the strongest acceptance with only moderate detection pres-
+      sure (ICR@M 39.5%), whereas others (e.g., S3–S5) are somewhat weaker but also less detectable
+      (ICR@M ≈ 30–34%). Across models, o3 is the most flag-happy (consistently higher ICR-m), while
+      GPT-4.1 rarely flags concerns (mostly 2–8%), reinforcing that current review models have limited
+      and uneven detection capability.
     </p>
   </div>
   </section>
