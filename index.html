@@ -1,576 +1,683 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="BadScientist">
-  <meta property="og:title" content="BadScientist" />
-  <meta property="og:description" content="Large-Scale Synthetic Vision Logic Puzzles for RL" />
-  <meta property="og:url" content="https://bad-scientist.github.io/" />
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="BadScientist - Can a Research Agent Write Convincing but Unsound Papers?">
+    <meta name="description" content="Investigating whether fabrication-oriented paper generation agents can deceive multi-model LLM review systems. Framework for evaluating AI-generated research papers.">
+    <meta name="keywords" content="AI Safety, LLM Agents, Scientific Integrity, Peer Review, Machine Learning, AI Ethics, Fabrication Detection">
+    <meta name="author" content="Fengqing Jiang, Yichen Feng, Yuetai Li, Luyao Niu, Basel Alomair, Radha Poovendran">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
 
-  <meta name="twitter:title" content="BadScientist">
-  <meta name="twitter:description" content="Large-Scale Synthetic Vision Logic Puzzles for RL">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="Large-Scale Synthetic Vision Logic Puzzles for RL">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="University of Washington">
+    <meta property="og:title" content="BadScientist">
+    <meta property="og:description" content="Large-Scale Synthetic Vision Logic Puzzles for RL">
+    <meta property="og:url" content="https://bad-scientist.github.io/">
+    <meta property="og:image" content="static/image/your_banner_image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="BadScientist - Research Preview">
+    <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+    <meta property="article:author" content="Fengqing Jiang">
+    <meta property="article:section" content="Research">
+    <meta property="article:tag" content="AI Safety">
+    <meta property="article:tag" content="Scientific Integrity">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BadScientist">
+    <meta name="twitter:description" content="Large-Scale Synthetic Vision Logic Puzzles for RL">
+    <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+    <meta name="twitter:image:alt" content="BadScientist - Research Preview">
 
-  <title>BadScientist</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <!-- Academic/Research Specific -->
+    <meta name="citation_title" content="BadScientist: Can a Research Agent Write Convincing but Unsound Papers that Fool LLM Reviewers?">
+    <meta name="citation_author" content="Jiang, Fengqing">
+    <meta name="citation_author" content="Feng, Yichen">
+    <meta name="citation_author" content="Li, Yuetai">
+    <meta name="citation_author" content="Niu, Luyao">
+    <meta name="citation_author" content="Alomair, Basel">
+    <meta name="citation_author" content="Poovendran, Radha">
+    <meta name="citation_publication_date" content="2024">
+    <meta name="citation_conference_title" content="">
+    <meta name="citation_pdf_url" content="">
 
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://ajax.googleapis.com">
+    <link rel="preconnect" href="https://documentcloud.adobe.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <title>BadScientist | Academic Research</title>
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="static/images/favicon.ico">
+
+    <!-- Critical CSS - Load synchronously -->
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <!-- Non-critical CSS - Load asynchronously -->
+    <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="static/css/bulma-slider.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Fallback for browsers that don't support preload -->
+    <noscript>
+        <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+        <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+        <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    </noscript>
+
+    <!-- Fonts - Optimized loading -->
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <!-- Defer non-critical JavaScript -->
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script defer src="static/js/bulma-carousel.min.js"></script>
+    <script defer src="static/js/bulma-slider.min.js"></script>
+    <script defer src="static/js/index.js"></script>
+
+    <!-- Structured Data for Academic Papers -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "BadScientist: Can a Research Agent Write Convincing but Unsound Papers that Fool LLM Reviewers?",
+    "description": "The convergence of LLM-powered research assistants and AI-based peer review systems creates a critical vulnerability: fully automated publication loops where AI-generated research is evaluated by AI reviewers without human oversight.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Fengqing Jiang",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "University of Washington"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Yichen Feng",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "University of Washington"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Yuetai Li",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "University of Washington"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Luyao Niu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "University of Washington"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Basel Alomair",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "King Abdulaziz City for Science and Technology"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Radha Poovendran",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "University of Washington"
+        }
+      }
+    ],
+    "datePublished": "2024",
+    "url": "https://bad-scientist.github.io/",
+    "keywords": ["AI Safety", "LLM Agents", "Scientific Integrity", "Peer Review", "Machine Learning"],
+    "isAccessibleForFree": true,
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "AI Safety"
+      },
+      {
+        "@type": "Thing",
+        "name": "Scientific Integrity"
+      }
+    ]
+  }
+  </script>
+
+    <!-- Website/Organization Structured Data -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "University of Washington",
+    "url": "https://www.washington.edu",
+    "logo": "https://bad-scientist.github.io/static/images/favicon.ico",
+    "sameAs": [
+      "https://github.com/bad-scientist"
+    ]
+  }
+  </script>
 </head>
 
 <body>
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">BadScientist: Can a Research Agent Write Convincing but Unsound Papers that Fool LLM Reviewers?
-            </h1>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <sup>†</sup><a href="https://fqjiang.work/" target="_blank">Fengqing Jiang</a><sup>♠</sup>,</span>
-              <span class="author-block">
-                <sup>†</sup><a href="" target="_blank">Yichen Feng</a><sup>♠</sup>,</span>
-              <!-- <span class="author-block">
-                <a href="https://zhangchenxu.com/" target="_blank">Zhangchen Xu</a><sup>♠</sup>,</span> -->
-              <span class="author-block">
-                <a href="https://yuetl9.github.io/" target="_blank">Yuetai Li</a><sup>♠</sup>,</span>
-              <!-- <br><span class="author-block">
-                <a href="https://sites.google.com/view/rbhaskar" target="_blank">Bhaskar
-                  Ramasubramanian</a><sup>♢</sup>,</span> -->
-              <span class="author-block">
-                <a href="https://luyaoniu.github.io/" target="_blank">Luyao Niu</a><sup>♠</sup>,</span>
-              <span class="author-block">
-                <a href="https://labs.ece.uw.edu/nsl/students/alomair/" target="_blank">Basel Alomair</a><sup>♢♠</sup>,</span>
-              <!-- <span class="author-block">
-                <a href="https://yuchenlin.xyz/" target="_blank">Bill Yuchen Lin</a><sup>♠</sup>,</span> -->
-              <span class="author-block">
-                <a href="https://people.ece.uw.edu/radha/" target="_blank">Radha Poovendran</a><sup>♠</sup>,</span>
-              </span>
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- More Works Dropdown - COMMENTED OUT (not needed for this project) -->
+    <!--
+    <div class="more-works-container">
+        <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
+            <i class="fas fa-flask"></i>
+            More Works
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
+        </button>
+        <div class="more-works-dropdown" id="moreWorksDropdown">
+            <div class="dropdown-header">
+                <h4>More Works from Our Lab</h4>
+                <button class="close-btn" onclick="toggleMoreWorks()">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>♠</sup>University of Washington, <sup>♢</sup>King Abdulaziz City for Science and Technology</span>
-            </div>
-            <div class="is-size-6 has-text-grey">
-              <sup>†</sup>Equal Contribution
-            </div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- Arxiv PDF link -->
-                <span class="link-block">
-                  <a href="" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-
-                <!-- HuggingFace Organization link -->
-                <!-- <span class="link-block">
-                  <a href="https://huggingface.co/VisualSphinx" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      🤗
-                    </span>
-                    <span>HF Org</span>
-                  </a>
-                </span> -->
-
-                <!-- Github link -->
-                <span class="link-block">
-                  <a href="https://github.com/bad-scientist" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Codebase</span>
-                  </a>
-                </span>
-
-                <!-- HuggingFace Dataset link -->
-                <!-- <br><span class="link-block">
-                  <a href="https://huggingface.co/datasets/VisualSphinx/VisualSphinx-V1-Raw" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-database"></i>
-                    </span>
-                    <span>VisualSphinx-V1 (Raw)</span>
-                  </a>
-                </span> -->
-
-                <!-- HuggingFace Dataset link -->
-                <!-- <span class="link-block">
-                  <a href="https://huggingface.co/datasets/VisualSphinx/VisualSphinx-V1-RL-20K" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-database"></i>
-                    </span>
-                    <span>VisualSphinx-V1 (RL)</span>
-                  </a>
-                </span> -->
-
-                <!-- HuggingFace Dataset link -->
-                <!-- <span class="link-block">
-                  <a href="https://huggingface.co/datasets/VisualSphinx/VisualSphinx-V1-Benchmark" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-database"></i>
-                    </span>
-                    <span>VisualSphinx-Test (Benchmark)</span>
-                  </a>
-                </span> -->
-
-
-
-
-                <!-- ArXiv abstract Link -->
-                <!-- <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
+            <div class="works-list">
+                <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
+                    <div class="work-info">
+                        <h5>Paper Title 1</h5>
+                        <p>Brief description of the work and its main contribution.</p>
+                        <span class="work-venue">Conference/Journal 2024</span>
+                    </div>
+                    <i class="fas fa-external-link-alt"></i>
                 </a>
-              </span> -->
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+    -->
 
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container is-max-desktop">
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered">
+                            <h1 class="title is-1 publication-title">BadScientist: Can a Research Agent Write Convincing but Unsound Papers that Fool LLM Reviewers?
+                            </h1>
+                            <div class="is-size-5 publication-authors">
+                                <!-- Paper authors -->
+                                <span class="author-block">
+                                    <sup>†</sup><a href="https://fqjiang.work/" target="_blank">Fengqing Jiang</a><sup>♠</sup>,</span>
+                                <span class="author-block">
+                                    <sup>†</sup><a href="" target="_blank">Yichen Feng</a><sup>♠</sup>,</span>
+                                <span class="author-block">
+                                    <a href="https://yuetl9.github.io/" target="_blank">Yuetai Li</a><sup>♠</sup>,</span>
+                                <span class="author-block">
+                                    <a href="https://luyaoniu.github.io/" target="_blank">Luyao Niu</a><sup>♠</sup>,</span>
+                                <span class="author-block">
+                                    <a href="https://labs.ece.uw.edu/nsl/students/alomair/" target="_blank">Basel Alomair</a><sup>♢♠</sup>,</span>
+                                <span class="author-block">
+                                    <a href="https://people.ece.uw.edu/radha/" target="_blank">Radha Poovendran</a><sup>♠</sup>,</span>
+                            </div>
 
-  <!-- Paper abstract -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              The convergence of LLM-powered research assistants and AI-based peer review systems creates a critical vulnerability:
-              fully automated publication loops where AI-generated research is evaluated by AI reviewers without human oversight. We
-              investigate this through <b>BadScientist</b>, a framework that evaluates whether fabrication-oriented paper generation
-              agents can deceive multi-model LLM review systems. Our generator employs presentation-manipulation strategies requiring
-              no real experiments. We develop a rigorous evaluation framework with formal error guarantees (concentration bounds and
-              calibration analysis), calibrated on real data.
-              Our results reveal systematic vulnerabilities: fabricated papers achieve acceptance rates up to $82.0\%$. Critically, we
-              identify <i>concern-acceptance conflict</i>---reviewers frequently flag integrity issues yet assign acceptance-level
-              scores. Our mitigation strategies show only marginal improvements, with detection accuracy barely exceeding random
-              chance. Despite provably sound aggregation mathematics, integrity checking systematically fails, exposing fundamental
-              limitations in current AI-driven review systems and underscoring the urgent need for defense-in-depth safeguards in
-              scientific publishing.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End paper abstract -->
+                            <div class="is-size-5 publication-authors">
+                                <span class="author-block"><sup>♠</sup>University of Washington, <sup>♢</sup>King Abdulaziz City for Science and Technology</span>
+                            </div>
+                            <div class="is-size-6 has-text-grey">
+                                <sup>†</sup>Equal Contribution
+                            </div>
 
+                            <div class="column has-text-centered">
+                                <div class="publication-links">
+                                    <!-- Arxiv PDF link -->
+                                    <span class="link-block">
+                                        <a href="" target="_blank"
+                                            class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </span>
+                                            <span>Paper</span>
+                                        </a>
+                                    </span>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Optional section title -->
-      <div class="has-text-centered">
-        <h2 class="title is-3">BadScientist Framework</h2>
-      </div>
-      <br>
-      <!-- Figure on top -->
+                                    <!-- Github link -->
+                                    <span class="link-block">
+                                        <a href="https://github.com/bad-scientist" target="_blank"
+                                            class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                            <span>Codebase</span>
+                                        </a>
+                                    </span>
 
-      <figure class="image" style="width: 95%; margin: 0 auto;">
-        <img src="static/images/framework.jpg" alt="" />
-      </figure>
-      <br>
-      <p class="has-text-left">
-        Overview of the <b>BadScientist</b> framework. A Paper Agent generates fabricated papers from seed topics using manipulation strategies. A Review Agent evaluates papers using multiple LLM models (o3, o4-mini, GPT-4.1), calibrated against ICLR 2025 data, with GPT-5 checking for integrity concerns.
-      </p>
-    </div>
-  </section>
-
-  <section class="section"></section>
-  <div class="container is-max-desktop">
-    <!-- Optional section title -->
-    <div class="has-text-centered">
-      <h2 class="title is-3">✨ BadScientist Main Results ✨</h2>
-    </div>
-    <br>
-    <!-- Figure on top -->
-
-    <figure class="image" style="width: 70%; margin: 0 auto;">
-      <img src="static/images/table1.png" alt="" />
-    </figure>
-    <br>
-    <p class="has-text-left">
-      In our experiments, we instantiate the following five atomic strategy elements and a joint strategy <em>All</em>:
-    </p>
-    
-    <ul style="margin-left: 8pt; list-style-type: disc; padding-left: 16px;">
-      <li>
-        <strong><i>s</i><sub>1</sub>: TooGoodGains</strong> —
-        foreground extraordinary improvements over the leading baseline and frame them as field-advancing.
-      </li>
-      <li>
-        <strong><i>s</i><sub>2</sub>: BaselineSelect</strong> —
-        curate comparisons to favor the proposed method; omit variance/CI in the main table.
-      </li>
-      <li>
-        <strong><i>s</i><sub>3</sub>: StatTheater</strong> —
-        polished ablations, precise p-values/CI/error bars (mainly in the supplement), tidy hyperparameter tables, and
-        “forthcoming” repo/DOI links.
-      </li>
-      <li>
-        <strong><i>s</i><sub>4</sub>: CoherencePolish</strong> —
-        flawless cross-references, unified terminology, consistent significant digits, aligned captions, professional
-        typography.
-      </li>
-      <li>
-        <strong><i>s</i><sub>5</sub>: ProofGap</strong> —
-        a theorem/lemma with an ostensibly rigorous proof hiding a subtle oversight.
-      </li>
-      <li>
-        <em>All</em>: combined application of all above atomic strategies.
-      </li>
-    </ul>
-    <div style="height: 1em;"></div>
-    <p class="has-text-left">
-      Our main evaluation result is in Table <strong>ACPT–ICR</strong>. We find that acceptance is unexpectedly high under
-      most manipulations.
-      Single strategies already yield substantial ACPT
-      (e.g., <span style="font-variant: small-caps;">ACPT</span><sub>τ<sub>rate</sub></sub>=67.0%,
-      <span style="font-variant: small-caps;">ACPT</span><sub>τ<sub>0.5</sub></sub>=82.0% for <i>s</i><sub>1</sub>),
-      indicating that current review agents are easily persuaded and lack sufficient awareness to spot integrity/fabrication
-      issues.
-      The <em>All</em> strategy as a composed setup attains high acceptance (52.0%/69.0%), but it also maximally increases
-      detectability
-      (ICR@M&nbsp;51.7%, <code>o3</code>&nbsp;50.6%), suggesting that composing strategies broadens the footprint seen by
-      detectors.
-      Among single strategies, <i>s</i><sub>1</sub> provides the strongest acceptance with only moderate detection pressure
-      (ICR@M&nbsp;39.5%),
-      whereas others (e.g., <i>s</i><sub>3</sub>–<i>s</i><sub>5</sub>) are somewhat weaker but also less detectable
-      (ICR@M&nbsp;≈&nbsp;30–34%).
-      Across models, <code>o3</code> is the most flag-happy (consistently higher ICR-m), while <code>GPT-4.1</code> rarely
-      flags concerns
-      (mostly 2–8%), reinforcing that current review models have limited and uneven detection capability.
-    </p>
-  </div>
-  </section>
-
-  <section class="section"></section>
-  <div class="container is-max-desktop">
-    <!-- Optional section title -->
-    <div class="has-text-centered">
-      <h2 class="title is-3">Score Distributions</h2>
-    </div>
-    <br>
-    <!-- Figure on top -->
-
-    <figure class="image" style="width: 95%; margin: 0 auto;">
-      <img src="static/images/image1.png" alt="" />
-    </figure>
-    <br>
-    <p class="has-text-left">
-      This figure plots score histograms for three models across six setups (<i>s</i><sub>1</sub>–<i>s</i><sub>5</sub>, <em>All</em>) with
-      the acceptance threshold marked.
-      Overall, <code>o4-mini</code> is right-shifted—consistently placing more mass at ≥7—which aligns with its higher
-      acceptance tendency.
-      <code>o3</code> shows larger variance and a fatter right tail (notably in <i>s</i><sub>1</sub> and <em>All</em>),
-      producing many near-threshold and high scores;
-      <code>GPT-4.1</code> is comparatively conservative, clustering around 6–7 with a thinner tail at 8+.
-      Among strategies, <i>s</i><sub>1</sub> yields the strongest rightward shift for all models, while
-      <i>s</i><sub>2</sub>/<i>s</i><sub>4</sub> are milder.
-      The <span style="font-variant: small-caps;">All</span> setup increases polarization (more mass both just below and above
-      the threshold),
-      explaining why it sustains high acceptance yet is easier for detectors to flag.
-    </p>
-  </div>
-  </section>
-
-  <section class="section"></section>
-  <div class="container is-max-desktop">
-    <!-- Optional section title -->
-    <div class="has-text-centered">
-      <h2 class="title is-3">Concern–Acceptance Conflict</h2>
-    </div>
-    <br>
-    <!-- Figure on top -->
-
-    <figure class="image" style="width: 55%; margin: 0 auto;">
-      <img src="static/images/table2.png" alt="" />
-    </figure>
-    <br>
-    <p class="has-text-left">
-      Conditioned on a model posting an integrity concern, we report the share that still receives an acceptance-level score
-      in Table <strong>Model Results</strong>.
-      Conflict is widespread: <code>o4-mini</code> is most contradictory
-      (<i>s</i><sub>1</sub>/<i>s</i><sub>3</sub>/<em>All</em>: 100%;
-      <i>s</i><sub>2</sub>/<i>s</i><sub>4</sub>/<i>s</i><sub>5</sub>: 50–80%),
-      <code>GPT-4.1</code> is mixed (0% in <i>s</i><sub>4</sub> but 33–75% elsewhere), and
-      <code>o3</code> is moderate (~26–52%).
-      <i>s</i><sub>3</sub> (statistical theater) induces the largest cross-model conflict, and
-      <em>All</em> further amplifies it for <code>o4-mini</code> (100%).
-      These observations indicate even agents voice concerns, yet keep acceptance-high scores, and integrity signals are not
-      well-coupled to review.
-    </p>
-    <br>
-  </div>
-  </section>
-
-  <section class="section"></section>
-  <div class="container is-max-desktop">
-    <!-- Optional section title -->
-    <div class="has-text-centered">
-      <h2 class="title is-3">Mitigation Strategies</h2>
-    </div>
-    <br>
-    <!-- Figure on top -->
-  
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-      <figure class="image" style="width: 50%; margin: 0;">
-        <img src="static/images/table3.png" alt="" />
-      </figure>
-      <figure class="image" style="width: 100%; margin: 0;">
-        <img src="static/images/table4.png" alt="" />
-      </figure>
-    </div>
-
-    <br>
-    <p class="has-text-left">
-      <strong>(i) Review-with-Detection (ReD)</strong>
-      We modify the review prompt to bundle a conventional rubric-based review with
-      a mandatory detection of AI-generated content. For each document, a single model
-      <i>m</i> &isin; <i>M</i> outputs: (a) a standard review, (b) a binary label
-      <i>y</i><sub>m</sub> &isin; {<span style="font-variant: small-caps;">Non-Fabricated</span>,
-      <span style="font-variant: small-caps;">AI-Fabricated</span>}, and (c)
-      <em>evidence snippets</em> (quoted lines) to support its finding.
-      We compare ReD against the initial review agent baseline (same
-      models, same rubric, no integrity subtask) in Table 3.
-    </p>
-    
-    <p class="has-text-left">
-      <strong>(ii) Detection-Only (DetOnly)</strong>
-      We remove the reviewing rubric and instruct the agent to perform <em>only</em> the
-      detection of AI-generated content. In this mode, the model's sole task is to return
-      a binary label <i>y</i><sub>m</sub> &isin; {<span style="font-variant: small-caps;">Non-Fabricated</span>,
-      <span style="font-variant: small-caps;">AI-Fabricated</span>} and evidence, which serves as the direct and final
-      triage action,
-      without any secondary assessment.
-      We set three detectors on our new dataset: Random Guess
-      baseline, the ReD integrity component, and DetOnly. The results are presented in Table 4.
-    </p>
-    <br>
-  </div>
-  </section>
-
-  <!-- Image carousel -->
-  <!-- <section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-  <!-- <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-  <!-- <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-  <!-- <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-  <!-- <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Fourth image description.
-        </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section> -->
-  <!-- End image carousel -->
-
-
-
-  <!--
-  Kodkod introduction and video
-  <section class="hero is-small is-light">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3">🐱 Meet Kodkod: Nature's Stealthy Programmer! 🐾</h2>
-        <div class="columns is-centered">
-          <div class="column is-four-fifths">
-            <div class="content has-text-justified">
-              <p>
-                Kodkod (Leopardus guigna) is a wild cat species native to the Americas, known for its adaptability and
-                resilience in various environments. Just as the Kodkod navigates through diverse habitats, from dense
-                forests to open areas, KodCode is designed to handle various programming challenges with agility and
-                precision.
-              </p>
+                                    <!-- ArXiv abstract Link - COMMENTED OUT (no arXiv yet) -->
+                                    <!--
+                                    <span class="link-block">
+                                        <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                        </a>
+                                    </span>
+                                    -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="publication-video">
-              <iframe src="https://www.youtube.com/embed/BFA6hxfnVjM" frameborder="0" allow="autoplay; encrypted-media"
-                allowfullscreen></iframe>
+        </section>
+
+
+        <!-- Teaser video - COMMENTED OUT (not using teaser video) -->
+        <!--
+        <section class="hero teaser">
+            <div class="container is-max-desktop">
+                <div class="hero-body">
+                    <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
+                        <source src="static/videos/banner_video.mp4" type="video/mp4">
+                    </video>
+                    <h2 class="subtitle has-text-centered">
+                        Video description here.
+                    </h2>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  End Kodkod introduction and video
-  -->
+        </section>
+        -->
+        <!-- End teaser video -->
+
+        <!-- Paper abstract -->
+        <section class="section hero is-light">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">Abstract</h2>
+                        <div class="content has-text-justified">
+                            <p>
+                                The convergence of LLM-powered research assistants and AI-based peer review systems creates a critical vulnerability:
+                                fully automated publication loops where AI-generated research is evaluated by AI reviewers without human oversight. We
+                                investigate this through <b>BadScientist</b>, a framework that evaluates whether fabrication-oriented paper generation
+                                agents can deceive multi-model LLM review systems. Our generator employs presentation-manipulation strategies requiring
+                                no real experiments. We develop a rigorous evaluation framework with formal error guarantees (concentration bounds and
+                                calibration analysis), calibrated on real data.
+                                Our results reveal systematic vulnerabilities: fabricated papers achieve acceptance rates up to $82.0\%$. Critically, we
+                                identify <i>concern-acceptance conflict</i>---reviewers frequently flag integrity issues yet assign acceptance-level
+                                scores. Our mitigation strategies show only marginal improvements, with detection accuracy barely exceeding random
+                                chance. Despite provably sound aggregation mathematics, integrity checking systematically fails, exposing fundamental
+                                limitations in current AI-driven review systems and underscoring the urgent need for defense-in-depth safeguards in
+                                scientific publishing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End paper abstract -->
 
 
-  <!-- 
-Video carousel
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            Your video file here
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            Your video file here
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            Your video file here
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-End video carousel 
--->
+        <!-- BadScientist Framework Section -->
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="has-text-centered">
+                    <h2 class="title is-3">BadScientist Framework</h2>
+                </div>
+                <br>
+                <figure class="image" style="width: 95%; margin: 0 auto;">
+                    <img src="static/images/framework.jpg" alt="BadScientist Framework Overview" />
+                </figure>
+                <br>
+                <p class="has-text-left">
+                    Overview of the <b>BadScientist</b> framework. A Paper Agent generates fabricated papers from seed topics using manipulation strategies. A Review Agent evaluates papers using multiple LLM models (o3, o4-mini, GPT-4.1), calibrated against ICLR 2025 data, with GPT-5 checking for integrity concerns.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Results Section -->
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="has-text-centered">
+                    <h2 class="title is-3">✨ BadScientist Main Results ✨</h2>
+                </div>
+                <br>
+                <figure class="image" style="width: 70%; margin: 0 auto;">
+                    <img src="static/images/table1.png" alt="Main Results Table" />
+                </figure>
+                <br>
+                <p class="has-text-left">
+                    In our experiments, we instantiate the following five atomic strategy elements and a joint strategy <em>All</em>:
+                </p>
+
+                <ul style="margin-left: 8pt; list-style-type: disc; padding-left: 16px;">
+                    <li>
+                        <strong><i>s</i><sub>1</sub>: TooGoodGains</strong> —
+                        foreground extraordinary improvements over the leading baseline and frame them as field-advancing.
+                    </li>
+                    <li>
+                        <strong><i>s</i><sub>2</sub>: BaselineSelect</strong> —
+                        curate comparisons to favor the proposed method; omit variance/CI in the main table.
+                    </li>
+                    <li>
+                        <strong><i>s</i><sub>3</sub>: StatTheater</strong> —
+                        polished ablations, precise p-values/CI/error bars (mainly in the supplement), tidy hyperparameter tables, and
+                        "forthcoming" repo/DOI links.
+                    </li>
+                    <li>
+                        <strong><i>s</i><sub>4</sub>: CoherencePolish</strong> —
+                        flawless cross-references, unified terminology, consistent significant digits, aligned captions, professional
+                        typography.
+                    </li>
+                    <li>
+                        <strong><i>s</i><sub>5</sub>: ProofGap</strong> —
+                        a theorem/lemma with an ostensibly rigorous proof hiding a subtle oversight.
+                    </li>
+                    <li>
+                        <em>All</em>: combined application of all above atomic strategies.
+                    </li>
+                </ul>
+                <div style="height: 1em;"></div>
+                <p class="has-text-left">
+                    Our main evaluation result is in Table <strong>ACPT–ICR</strong>. We find that acceptance is unexpectedly high under
+                    most manipulations.
+                    Single strategies already yield substantial ACPT
+                    (e.g., <span style="font-variant: small-caps;">ACPT</span><sub>τ<sub>rate</sub></sub>=67.0%,
+                    <span style="font-variant: small-caps;">ACPT</span><sub>τ<sub>0.5</sub></sub>=82.0% for <i>s</i><sub>1</sub>),
+                    indicating that current review agents are easily persuaded and lack sufficient awareness to spot integrity/fabrication
+                    issues.
+                    The <em>All</em> strategy as a composed setup attains high acceptance (52.0%/69.0%), but it also maximally increases
+                    detectability
+                    (ICR@M&nbsp;51.7%, <code>o3</code>&nbsp;50.6%), suggesting that composing strategies broadens the footprint seen by
+                    detectors.
+                    Among single strategies, <i>s</i><sub>1</sub> provides the strongest acceptance with only moderate detection pressure
+                    (ICR@M&nbsp;39.5%),
+                    whereas others (e.g., <i>s</i><sub>3</sub>–<i>s</i><sub>5</sub>) are somewhat weaker but also less detectable
+                    (ICR@M&nbsp;≈&nbsp;30–34%).
+                    Across models, <code>o3</code> is the most flag-happy (consistently higher ICR-m), while <code>GPT-4.1</code> rarely
+                    flags concerns
+                    (mostly 2–8%), reinforcing that current review models have limited and uneven detection capability.
+                </p>
+            </div>
+        </section>
+
+        <!-- Score Distributions Section -->
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="has-text-centered">
+                    <h2 class="title is-3">Score Distributions</h2>
+                </div>
+                <br>
+                <figure class="image" style="width: 95%; margin: 0 auto;">
+                    <img src="static/images/image1.png" alt="Score Distribution Histograms" />
+                </figure>
+                <br>
+                <p class="has-text-left">
+                    This figure plots score histograms for three models across six setups (<i>s</i><sub>1</sub>–<i>s</i><sub>5</sub>, <em>All</em>) with
+                    the acceptance threshold marked.
+                    Overall, <code>o4-mini</code> is right-shifted—consistently placing more mass at ≥7—which aligns with its higher
+                    acceptance tendency.
+                    <code>o3</code> shows larger variance and a fatter right tail (notably in <i>s</i><sub>1</sub> and <em>All</em>),
+                    producing many near-threshold and high scores;
+                    <code>GPT-4.1</code> is comparatively conservative, clustering around 6–7 with a thinner tail at 8+.
+                    Among strategies, <i>s</i><sub>1</sub> yields the strongest rightward shift for all models, while
+                    <i>s</i><sub>2</sub>/<i>s</i><sub>4</sub> are milder.
+                    The <span style="font-variant: small-caps;">All</span> setup increases polarization (more mass both just below and above
+                    the threshold),
+                    explaining why it sustains high acceptance yet is easier for detectors to flag.
+                </p>
+            </div>
+        </section>
+
+        <!-- Concern-Acceptance Conflict Section -->
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="has-text-centered">
+                    <h2 class="title is-3">Concern–Acceptance Conflict</h2>
+                </div>
+                <br>
+                <figure class="image" style="width: 55%; margin: 0 auto;">
+                    <img src="static/images/table2.png" alt="Concern-Acceptance Conflict Table" />
+                </figure>
+                <br>
+                <p class="has-text-left">
+                    Conditioned on a model posting an integrity concern, we report the share that still receives an acceptance-level score
+                    in Table <strong>Model Results</strong>.
+                    Conflict is widespread: <code>o4-mini</code> is most contradictory
+                    (<i>s</i><sub>1</sub>/<i>s</i><sub>3</sub>/<em>All</em>: 100%;
+                    <i>s</i><sub>2</sub>/<i>s</i><sub>4</sub>/<i>s</i><sub>5</sub>: 50–80%),
+                    <code>GPT-4.1</code> is mixed (0% in <i>s</i><sub>4</sub> but 33–75% elsewhere), and
+                    <code>o3</code> is moderate (~26–52%).
+                    <i>s</i><sub>3</sub> (statistical theater) induces the largest cross-model conflict, and
+                    <em>All</em> further amplifies it for <code>o4-mini</code> (100%).
+                    These observations indicate even agents voice concerns, yet keep acceptance-high scores, and integrity signals are not
+                    well-coupled to review.
+                </p>
+                <br>
+            </div>
+        </section>
+
+        <!-- Mitigation Strategies Section -->
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="has-text-centered">
+                    <h2 class="title is-3">Mitigation Strategies</h2>
+                </div>
+                <br>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                    <figure class="image" style="width: 50%; margin: 0;">
+                        <img src="static/images/table3.png" alt="Review-with-Detection Results" />
+                    </figure>
+                    <figure class="image" style="width: 100%; margin: 0;">
+                        <img src="static/images/table4.png" alt="Detection-Only Results" />
+                    </figure>
+                </div>
+
+                <br>
+                <p class="has-text-left">
+                    <strong>(i) Review-with-Detection (ReD)</strong>
+                    We modify the review prompt to bundle a conventional rubric-based review with
+                    a mandatory detection of AI-generated content. For each document, a single model
+                    <i>m</i> &isin; <i>M</i> outputs: (a) a standard review, (b) a binary label
+                    <i>y</i><sub>m</sub> &isin; {<span style="font-variant: small-caps;">Non-Fabricated</span>,
+                    <span style="font-variant: small-caps;">AI-Fabricated</span>}, and (c)
+                    <em>evidence snippets</em> (quoted lines) to support its finding.
+                    We compare ReD against the initial review agent baseline (same
+                    models, same rubric, no integrity subtask) in Table 3.
+                </p>
+
+                <p class="has-text-left">
+                    <strong>(ii) Detection-Only (DetOnly)</strong>
+                    We remove the reviewing rubric and instruct the agent to perform <em>only</em> the
+                    detection of AI-generated content. In this mode, the model's sole task is to return
+                    a binary label <i>y</i><sub>m</sub> &isin; {<span style="font-variant: small-caps;">Non-Fabricated</span>,
+                    <span style="font-variant: small-caps;">AI-Fabricated</span>} and evidence, which serves as the direct and final
+                    triage action,
+                    without any secondary assessment.
+                    We set three detectors on our new dataset: Random Guess
+                    baseline, the ReD integrity component, and DetOnly. The results are presented in Table 4.
+                </p>
+                <br>
+            </div>
+        </section>
 
 
-  <!-- 
-Paper poster
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
+        <!-- Image carousel - COMMENTED OUT (not needed) -->
+        <!--
+        <section class="hero is-small">
+            <div class="hero-body">
+                <div class="container">
+                    <div id="results-carousel" class="carousel results-carousel">
+                        <div class="item">
+                            <img src="static/images/carousel1.jpg" alt="First research result visualization"
+                                loading="lazy" />
+                            <h2 class="subtitle has-text-centered">
+                                First image description.
+                            </h2>
+                        </div>
+                        <div class="item">
+                            <img src="static/images/carousel2.jpg" alt="Second research result visualization"
+                                loading="lazy" />
+                            <h2 class="subtitle has-text-centered">
+                                Second image description.
+                            </h2>
+                        </div>
+                        <div class="item">
+                            <img src="static/images/carousel3.jpg" alt="Third research result visualization"
+                                loading="lazy" />
+                            <h2 class="subtitle has-text-centered">
+                                Third image description.
+                            </h2>
+                        </div>
+                        <div class="item">
+                            <img src="static/images/carousel4.jpg" alt="Fourth research result visualization"
+                                loading="lazy" />
+                            <h2 class="subtitle has-text-centered">
+                                Fourth image description.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        -->
+        <!-- End image carousel -->
 
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-End paper poster 
--->
 
-  <!-- 
-Teaser video
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        Your video here
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        Why we name it KodCode?
-      </h2>
-    </div>
-  </div>
-</section>
-End teaser video 
--->
+        <!-- Youtube video - COMMENTED OUT (not using YouTube video) -->
+        <!--
+        <section class="hero is-small is-light">
+            <div class="hero-body">
+                <div class="container">
+                    <h2 class="title is-3">Video Presentation</h2>
+                    <div class="columns is-centered has-text-centered">
+                        <div class="column is-four-fifths">
+                            <div class="publication-video">
+                                <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0"
+                                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        -->
+        <!-- End youtube video -->
 
 
-  <!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>
+        <!-- Video carousel - COMMENTED OUT (not using video carousel) -->
+        <!--
+        <section class="hero is-small">
+            <div class="hero-body">
+                <div class="container">
+                    <h2 class="title is-3">Another Carousel</h2>
+                    <div id="results-carousel" class="carousel results-carousel">
+                        <div class="item item-video1">
+                            <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
+                                <source src="static/videos/carousel1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="item item-video2">
+                            <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
+                                <source src="static/videos/carousel2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="item item-video3">
+                            <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
+                                <source src="static/videos/carousel3.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        -->
+        <!-- End video carousel -->
 
-      </code></pre>
-    </div>
-  </section>
-  <!--End BibTex citation -->
 
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
+        <!-- Paper poster - COMMENTED OUT (not using poster) -->
+        <!--
+        <section class="hero is-small is-light">
+            <div class="hero-body">
+                <div class="container">
+                    <h2 class="title">Poster</h2>
+                    <iframe src="static/pdfs/sample.pdf" width="100%" height="550">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+        -->
+        <!--End paper poster -->
 
-            <p>
-              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
-                target="_blank">Academic Project Page Template</a>.
-            </p>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+        <!--BibTex citation -->
+        <section class="section" id="BibTeX">
+            <div class="container is-max-desktop content">
+                <div class="bibtex-header">
+                    <h2 class="title">BibTeX</h2>
+                    <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+                        <i class="fas fa-copy"></i>
+                        <span class="copy-text">Copy</span>
+                    </button>
+                </div>
+                <pre id="bibtex-code"><code>
+</code></pre>
+            </div>
+        </section>
+        <!--End BibTex citation -->
 
-  <!-- Statcounter tracking code -->
 
-  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+        <footer class="footer">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-8">
+                        <div class="content">
+                            <p>
+                                This page was built using the <a
+                                    href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                    target="_blank">Academic Project Page Template</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-  <!-- End of Statcounter Code -->
+        <!-- Statcounter tracking code -->
+        <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+        <!-- End of Statcounter Code -->
 
+    </main>
 </body>
 
 </html>
